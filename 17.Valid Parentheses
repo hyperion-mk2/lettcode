@@ -1,0 +1,51 @@
+public class Solution {
+    public boolean isValid(String s) {
+        Stack charS = new Stack();
+        int i = 0;
+        while (i!=s.length())
+        {
+            char c = s.charAt(i);
+
+                if (c=='{'||c=='('||c=='['){
+                    charS.push(c);
+                }
+                else if(charS.empty()==true){
+                    return false;
+                }
+                else{
+                    switch(c){
+                        case '}':
+                        if ((char)charS.peek()=='{'){
+                            charS.pop();
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        break;
+                        case ']':
+                        if ((char)charS.peek()=='['){
+                            charS.pop();
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        break;
+                        case ')':
+                        if ((char)charS.peek()=='('){
+                            charS.pop();
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        break;
+                    }
+                    
+                }
+        ++i;
+        }
+        return charS.empty();
+    }
+}
